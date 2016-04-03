@@ -1,0 +1,13 @@
+{
+  "intents": [
+    {
+      "intent": "DmxIntent"
+    },
+    {
+      "intent": "DarkSoulsIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    }
+  ]
+}
