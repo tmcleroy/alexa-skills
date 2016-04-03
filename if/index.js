@@ -1,7 +1,7 @@
 var http = require('http');
 var cheerio = require('cheerio');
 
-// var APP_ID = "amzn1.echo-sdk-ams.app.37ccc374-d5ad-4d99-a87e-4a1aff113f74";
+// var APP_ID = "YOUR APP ID";
 
 // Route the incoming request based on type (LaunchRequest, IntentRequest,
 // etc.) The JSON body of the request is provided in the event parameter.
