@@ -1,0 +1,19 @@
+{
+  "name": "alexa-skills",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-awslambda": "^0.3.0",
+    "gulp-util": "^3.0.7",
+    "gulp-zip": "^3.2.0",
+    "lodash": "^4.8.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
