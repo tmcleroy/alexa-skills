@@ -1,5 +1,6 @@
-var http = require('http');
-var cheerio = require('cheerio');
+var _ = require('lodash');
+var tp = require('torrent-project-api');
+
 
 // var APP_ID = "YOUR APP ID";
 
@@ -83,8 +84,8 @@ function onIntent(intentRequest, session, callback) {
         intentName = intentRequest.intent.name;
 
     // Dispatch to your skill's intent handlers
-    if ('JailIntent' === intentName) {
-      jailIntent(intent, session, callback);
+    if ('SearchIntent' === intentName) {
+      searchIntent(intent, session, callback);
     } else {
       throw 'Invalid intent';
     }
@@ -107,21 +108,36 @@ function getWelcomeResponse(callback) {
         buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
 }
 
-function jailIntent (intent, session, callback) {
-  http.get('http://isdmxinjail.com', function (res) {
-    res.on('data', function (d) {
-      var $ = cheerio.load(d);
-      var response = $('#main h1').text();
-      callback({}, buildSpeechletResponse(response, true));
-    });
+function searchIntent (intent, session, callback) {
+  var query = intent.slots.Query.value;
+
+  tp.search(query, function (err, result) {
+    if (err) return console.error(err)
+
+    var episodes = _(result.torrents)
+    .map('title')
+    .map(function (t) {
+      var match = t.match(/s\d+e\d+/gi);
+      return match && match[0];
+    })
+    .uniq()
+    .filter(null)
+    .sortBy(function (n) { return -parseInt(n.replace(/\D/g, ''), 10) })
+    .slice(0, 5)
+    .value();
+
+    console.log('EPS', episodes);
+
+    var response = '<speak>The latest 5 episodes for ' + query + ' are <break strength="strong"/>' + episodes.join('<break strength="strong"/>') + '</speak>';
+    callback({}, buildSsmlResponse(response, true));
   });
 }
 
-function buildSpeechletResponse(output, shouldEndSession) {
+function buildSsmlResponse(output, shouldEndSession) {
     return {
         outputSpeech: {
-            type: "PlainText",
-            text: output
+            type: "SSML",
+            ssml: output
         },
         shouldEndSession: shouldEndSession
     };

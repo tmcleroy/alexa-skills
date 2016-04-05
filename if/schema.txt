@@ -1,7 +1,10 @@
 {
   "intents": [
     {
-      "intent": "StreamIntent"
+      "intent": "DmxIntent"
+    },
+    {
+      "intent": "DarkSoulsIntent"
     },
     {
       "intent": "AMAZON.HelpIntent"
