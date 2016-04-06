@@ -1,0 +1,24 @@
+[
+  {
+    "session": {
+      "sessionId": "SessionId.b695b1c3-40b8-4cd7-b2ae-e93a60aee4e1",
+      "application": {
+        "applicationId": "amzn1.echo-sdk-ams.app.d0b1bf1d-3cd1-4677-bd7e-78e9b62d93e1"
+      },
+      "user": {
+        "userId": "amzn1.ask.account.AFP3ZWPOS2BGJR7OWJZ3DHPKMOMNWY4AY66FUR7ILBWANIHQN73QH5RNQGLUFF4XPAFTCJSP5MHKJ2WJAWBFVYFQHKO2NNU3RO55KONZBG55DWY3K2QFAXGRMQXLRJ5EUION6QXFVGYFICO6EF5LNEJP2FLEATK2NPEJTMXBVCXBVSP26HWUHQTRFPF6Z2EBA2YMCOH57XVGO6I"
+      },
+      "new": true
+    },
+    "request": {
+      "type": "IntentRequest",
+      "requestId": "EdwRequestId.8ee219cb-e5b9-49d6-ba43-33f4c1b0d7ef",
+      "timestamp": "2016-04-06T01:38:36Z",
+      "intent": {
+        "name": "JailIntent",
+        "slots": {}
+      }
+    },
+    "version": "1.0"
+  }
+]

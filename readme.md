@@ -1,6 +1,13 @@
 # alexa-skills
 
-### how to build
+### how to test
+make sure you have a `request.json` file in your skill directory consisting of sample requests copied from the Amazon developer console.
+
+`gulp test --skill=dirName`
+
+where `dirName` is the directory of your skill
+
+### how to deploy
 `gulp deploy --skill=dirName --lambda=lambdaName`
 
 where `dirName` is the directory of your skill and `lambdaName` is the name of your lambda
