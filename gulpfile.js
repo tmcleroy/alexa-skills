@@ -19,8 +19,8 @@ gulp.task('deploy', () => {
 gulp.task('test', (done) => {
   const skill = util.env.skill;
   const verbose = util.env.verbose;
-  const handler = require(path.join(process.cwd(), skill, 'index.js')).handler;
-  const requests = require(path.join(process.cwd(), skill, 'requests.json'));
+  const lambda = require(path.join(process.cwd(), skill, 'index.js')).handler;
+  const requests = require(path.join(process.cwd(), skill, 'requests.js'));
   const promises = [];
 
   requests.forEach(req => {
@@ -31,18 +31,23 @@ gulp.task('test', (done) => {
             console.log('**** SUCCESS ****');
             console.log(data);
           }
-          resolve();
+          if (req.test(data)) {
+            resolve();
+          } else {
+            throw new util.PluginError('test', 'A test returned successfully but failed your response correctness test');
+            reject();
+          }
         },
         fail: data => {
           if (verbose) {
             console.log('**** FAILURE ****');
             console.log(data);
           }
-          throw new util.PluginError('test', 'A test failed');
+          throw new util.PluginError('test', 'A test failed to return successfully');
           reject();
         }
       };
-      handler(req, context);
+      lambda(req.request, context);
     }));
   });
 
