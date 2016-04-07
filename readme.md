@@ -11,6 +11,13 @@ Make sure you have a `requests.js` file in your skill directory consisting of sa
 Where `dirName` is the directory of your skill
 
 ### how to deploy
+make sure your `~/.aws/credentials` file contains a default access key and secret access key with access to update your lambda functions
+```
+[default]
+aws_access_key_id = <YOUR_ACCESS_KEY_ID>
+aws_secret_access_key = <YOUR_SECRET_ACCESS_KEY>
+```
+
 `gulp deploy --skill=dirName --lambda=lambdaName`
 
 Where `dirName` is the directory of your skill and `lambdaName` is the name of your lambda
